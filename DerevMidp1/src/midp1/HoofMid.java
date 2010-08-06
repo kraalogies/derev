@@ -20,7 +20,7 @@ public class HoofMid extends MIDlet {
 	}
 
 	protected void startApp() throws MIDletStateChangeException {
-		new Klient(new Midp1SkermOpwekker(this));
+		new Klient(new Midp1SkermOpwekker(this), new Midp1Omgewing());
 	}
 
 }

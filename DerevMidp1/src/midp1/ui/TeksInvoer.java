@@ -29,6 +29,10 @@ public class TeksInvoer implements Teks {
 		vorm.append(invoerVeld);
 	}
 	public Teks stel(String teks) {
+		if (teks == null)
+			teks = "";
+		if (teks.length() > maksLengte)
+			teks = teks.substring(0, maksLengte - 1);
 		if (invoerVeld != null)
 			invoerVeld.setString(teks);
 		else if (teksVeld != null)
