@@ -4,9 +4,9 @@ import platform.Sein;
 
 public interface Skerm {
 
-	Invoer voegbyInvoer(String string);
+	Teks voegbyTeks(String etiket);
 
-	void voegbyBevel(String string, Sein sein);
+	void voegbyBevel(String teks, Sein sein);
 
 	void wys();
 

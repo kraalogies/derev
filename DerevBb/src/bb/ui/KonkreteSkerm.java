@@ -1,8 +1,8 @@
 package bb.ui;
 
 import platform.Sein;
-import platform.ui.Invoer;
 import platform.ui.Skerm;
+import platform.ui.Teks;
 import bb.Bevele;
 import net.rim.device.api.ui.MenuItem;
 import net.rim.device.api.ui.UiApplication;
@@ -22,10 +22,6 @@ public class KonkreteSkerm extends MainScreen implements Skerm {
 		bevele.voegby(naam, sein);
 	}
 
-	public Invoer voegbyInvoer(String label) {
-		return new KonkreteInvoer(this, label);
-	}
-	
 	protected void makeMenu(Menu menu, int instance) {
 		for (int i = 0; i < bevele.kryAantal(); ++i) {
 			final Sein sein = bevele.krySein(i);
@@ -38,6 +34,10 @@ public class KonkreteSkerm extends MainScreen implements Skerm {
 
 	public void wys() {
 		app.pushScreen(this);
+	}
+
+	public Teks voegbyTeks(String etiket) {
+		return new KonkreteInvoer(this, etiket, null, 10, false);
 	}
 
 }
