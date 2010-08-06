@@ -1,8 +1,8 @@
 package android.ui;
 
 import platform.Sein;
-import platform.ui.Invoer;
 import platform.ui.Skerm;
+import platform.ui.Teks;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +22,7 @@ public class AndroidSkerm implements Skerm, AndroidBedrading {
 	}
 
 	@Override
-	public Invoer voegbyInvoer(String etiket) {
+	public Teks voegbyTeks(String etiket) {
 		return new StandaardInvoer(uitleg, aktiwiteit, etiket);
 	}
 
