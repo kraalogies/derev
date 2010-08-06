@@ -8,8 +8,8 @@ import platform.ui.Skerm;
 public class Klient {
 	private final Invoer naam;
 	private final Invoer van;
-	public Klient(SkermOpwekker screenFactory) {
-		Skerm venster = screenFactory.maak();
+	public Klient(SkermOpwekker skermOpwekker) {
+		Skerm venster = skermOpwekker.maak();
 		naam = venster.voegbyInvoer("Naam: ");
 		van = venster.voegbyInvoer("Van: ");
 		venster.voegbyBevel("Klik1", new Sein() {

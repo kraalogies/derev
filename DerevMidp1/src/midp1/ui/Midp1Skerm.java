@@ -10,7 +10,7 @@ import javax.microedition.midlet.MIDlet;
 import midp1.Seine;
 
 import platform.Sein;
-import platform.ui.Invoer;
+import platform.ui.Teks;
 import platform.ui.Skerm;
 
 public class Midp1Skerm implements Skerm, CommandListener {
@@ -31,8 +31,8 @@ public class Midp1Skerm implements Skerm, CommandListener {
 		vorm.addCommand(bevel);
 	}
 
-	public Invoer voegbyInvoer(String label) {
-		return new KonkreteInvoer(vorm, label);
+	public Teks voegbyTeks(String etiket) {
+		return new TeksInvoer(vorm, etiket, null, 10, false);
 	}
 
 	public void wys() {
