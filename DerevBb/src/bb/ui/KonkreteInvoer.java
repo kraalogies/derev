@@ -2,7 +2,6 @@ package bb.ui;
 
 import platform.ui.Kontrole;
 import platform.ui.Teks;
-import net.rim.device.api.ui.Screen;
 import net.rim.device.api.ui.component.EditField;
 import net.rim.device.api.ui.component.NullField;
 import net.rim.device.api.ui.container.MainScreen;
@@ -12,7 +11,7 @@ public class KonkreteInvoer implements Teks {
 	private NullField plekhouer;
 	
 	public KonkreteInvoer(MainScreen skerm, String etiket, String teks, int maksLengte, boolean slegsLees) {
-		veld = new EditField(etiket, teks, maksLengte, 0);
+		veld = new EditField(etiket + " ", teks, maksLengte, 0);
 		skerm.add(veld);
 	}
 

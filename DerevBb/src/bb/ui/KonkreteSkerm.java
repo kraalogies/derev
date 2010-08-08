@@ -1,6 +1,7 @@
 package bb.ui;
 
 import platform.Sein;
+import platform.ui.Merk;
 import platform.ui.Skerm;
 import platform.ui.Teks;
 import bb.Bevele;
@@ -38,6 +39,10 @@ public class KonkreteSkerm extends MainScreen implements Skerm {
 
 	public Teks voegbyTeks(String etiket) {
 		return new KonkreteInvoer(this, etiket, null, 10, false);
+	}
+
+	public Merk voegbyMerk(String etiket) {
+		return new BbMerker(this, etiket);
 	}
 
 }
