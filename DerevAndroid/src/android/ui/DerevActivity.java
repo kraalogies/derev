@@ -1,5 +1,6 @@
 package android.ui;
 
+import android.AndroidOmgewing;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,7 +17,7 @@ public class DerevActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new Klient(skermOpwekker);
+        new Klient(skermOpwekker, new AndroidOmgewing("AndroidDerev"));
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

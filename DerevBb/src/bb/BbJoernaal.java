@@ -22,7 +22,7 @@ public class BbJoernaal implements Joernaal {
 
 	public void info(String teks) {
 		System.out.println(teks);
-		EventLogger.logEvent(guid, teks.getBytes(), EventLogger.ALWAYS_LOG);
+		EventLogger.logEvent(guid, teks.getBytes(), EventLogger.INFORMATION);
 	}
 
 	public void info(StringFunk teks) {
