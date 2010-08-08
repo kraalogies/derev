@@ -10,6 +10,7 @@ import javax.microedition.midlet.MIDlet;
 import midp1.Seine;
 
 import platform.Sein;
+import platform.ui.Merk;
 import platform.ui.Teks;
 import platform.ui.Skerm;
 
@@ -44,6 +45,9 @@ public class Midp1Skerm implements Skerm, CommandListener {
 			return;
 		Sein sein = seine.krySein(bevel);
 		sein.stuur();
+	}
+	public Merk voegbyMerk(String etiket) {
+		return new Midp1Merk(vorm, etiket);
 	}
 
 }

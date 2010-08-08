@@ -46,7 +46,7 @@ public class TeksInvoer implements Teks {
 			? invoerVeld.getString() 
 			: (teksVeld != null ? teksVeld.getText() : teks);
 	}
-	private static void stelKontrole(Form vorm, Item huidige, Item nuwe) {
+	public static void stelKontrole(Form vorm, Item huidige, Item nuwe) {
 		for (int i = 0; i < vorm.size(); ++i) {
 			if (vorm.get(i) == huidige) {
 				vorm.set(i, nuwe);
