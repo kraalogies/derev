@@ -10,4 +10,6 @@ public interface Skerm {
 
 	void wys();
 
+	Merk voegbyMerk(String etiket);
+
 }

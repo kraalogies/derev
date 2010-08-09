@@ -1,6 +1,7 @@
 package android.ui;
 
 import platform.Sein;
+import platform.ui.Merk;
 import platform.ui.Skerm;
 import platform.ui.Teks;
 import android.app.Activity;
@@ -44,6 +45,10 @@ public class AndroidSkerm implements Skerm, AndroidBedrading {
 		Sein sein = bevele.krySein(item.getItemId());
 		sein.stuur();
 		return true;
+	}
+	@Override
+	public Merk voegbyMerk(String etiket) {
+		return new AndroidMerker(uitleg, aktiwiteit, etiket);
 	}
 
 }
