@@ -12,4 +12,6 @@ public interface Skerm {
 
 	Merk voegbyMerk(String etiket);
 
+	PrentjieVeld voegbyPrentjie(String etiket);
+
 }

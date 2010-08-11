@@ -11,6 +11,7 @@ import midp1.Seine;
 
 import platform.Sein;
 import platform.ui.Merk;
+import platform.ui.PrentjieVeld;
 import platform.ui.Teks;
 import platform.ui.Skerm;
 
@@ -48,6 +49,9 @@ public class Midp1Skerm implements Skerm, CommandListener {
 	}
 	public Merk voegbyMerk(String etiket) {
 		return new Midp1Merk(vorm, etiket);
+	}
+	public PrentjieVeld voegbyPrentjie(String etiket) {
+		return new Midp1PrentjieVeld(vorm, etiket);
 	}
 
 }
