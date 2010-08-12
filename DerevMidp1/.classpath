@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
-	<classpathentry kind="con" path="org.elipse.mtj.JavaMEContainer/Java(TM) Platform Micro Edition SDK 3.0/DefaultCldcPhone1"/>
+	<classpathentry kind="con" path="org.elipse.mtj.JavaMEContainer/Java(TM) Platform Micro Edition SDK 3.0/DefaultFxTouchPhone1"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -21,4 +21,8 @@ public class Midp1Joernaal implements Joernaal {
 		System.out.println(teks.roep());
 	}
 
+	public void fout(Exception e) {
+		e.printStackTrace();
+	}
+
 }

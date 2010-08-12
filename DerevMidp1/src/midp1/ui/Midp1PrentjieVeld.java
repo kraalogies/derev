@@ -6,16 +6,32 @@ import java.io.InputStream;
 
 import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.Image;
+import javax.microedition.lcdui.Item;
+import javax.microedition.media.Manager;
+import javax.microedition.media.MediaException;
+import javax.microedition.media.Player;
+import javax.microedition.media.control.VideoControl;
 
+import platform.Joernaal;
+import platform.Sein;
 import platform.ui.Kontrole;
 import platform.ui.PrentjieVeld;
+import platform.ui.Skerm;
 
-public class Midp1PrentjieVeld implements PrentjieVeld {
+public class Midp1PrentjieVeld implements PrentjieVeld, Runnable {
 	private final Form vorm;
 	private byte[] data;
-	
-	public Midp1PrentjieVeld(Form vorm, String etiket) {
+	private final Joernaal joernaal;
+	public Midp1PrentjieVeld(Skerm skerm, Joernaal joernaal, Form vorm, String etiket) {
 		this.vorm = vorm;
+		this.joernaal = joernaal;
+		final Midp1PrentjieVeld hierdie = this;
+		skerm.voegbyBevel("Foto", new Sein() {
+			public void stuur() {
+				Thread t = new Thread(hierdie);
+				t.start();
+			}
+		});
 	}
 
 	public Kontrole aktiveer() {
@@ -59,6 +75,19 @@ public class Midp1PrentjieVeld implements PrentjieVeld {
 		this.data = lees(in);
 		vorm.append(Image.createImage(data, 0, data.length - 1));
 		return this;
+	}
+
+	public void run() {
+		try {
+			Player speler = Manager.createPlayer("capture://video");
+			speler.realize();
+			VideoControl kontrole = (VideoControl) speler.getControl("VideoControl");
+			Item item = (Item) kontrole.initDisplayMode(VideoControl.USE_GUI_PRIMITIVE, null);
+			vorm.append(item);
+			speler.start();
+		} catch (Exception e) {
+			joernaal.fout(e);
+		}	
 	}
 
 }

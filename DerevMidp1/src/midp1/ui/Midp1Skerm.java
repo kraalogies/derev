@@ -9,6 +9,7 @@ import javax.microedition.midlet.MIDlet;
 
 import midp1.Seine;
 
+import platform.Joernaal;
 import platform.Sein;
 import platform.ui.Merk;
 import platform.ui.PrentjieVeld;
@@ -19,8 +20,9 @@ public class Midp1Skerm implements Skerm, CommandListener {
 	private final Form vorm;
 	private final Seine seine = new Seine();
 	private final MIDlet midlet;
-	
-	public Midp1Skerm(MIDlet midlet) {
+	private final Joernaal joernaal;
+	public Midp1Skerm(MIDlet midlet, Joernaal joernaal) {
+		this.joernaal = joernaal;
 		this.midlet = midlet;
 		vorm = new Form("");
 		vorm.setCommandListener(this);
@@ -51,7 +53,7 @@ public class Midp1Skerm implements Skerm, CommandListener {
 		return new Midp1Merk(vorm, etiket);
 	}
 	public PrentjieVeld voegbyPrentjie(String etiket) {
-		return new Midp1PrentjieVeld(vorm, etiket);
+		return new Midp1PrentjieVeld(this, joernaal, vorm, etiket);
 	}
 
 }
