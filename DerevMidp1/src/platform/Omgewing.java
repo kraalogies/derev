@@ -4,5 +4,5 @@ import java.io.InputStream;
 
 public interface Omgewing {
 	Joernaal kryJoernaal();
-	InputStream kryLokalePrentjie(String naam);
+	InputStream kryLokalePrentjie(String naam) throws Exception;
 }

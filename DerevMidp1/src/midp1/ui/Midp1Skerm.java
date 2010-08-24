@@ -53,7 +53,7 @@ public class Midp1Skerm implements Skerm, CommandListener {
 		return new Midp1Merk(vorm, etiket);
 	}
 	public PrentjieVeld voegbyPrentjie(String etiket) {
-		return new Midp1PrentjieVeld(this, joernaal, vorm, etiket);
+		return new Midp1PrentjieVeld(midlet, this, joernaal, vorm, etiket);
 	}
 
 }

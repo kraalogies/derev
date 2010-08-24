@@ -5,5 +5,5 @@ import java.io.InputStream;
 
 public interface PrentjieVeld extends Kontrole {
 	byte[] kry();
-	PrentjieVeld stel(InputStream in) throws IOException;
+	PrentjieVeld stel(InputStream in) throws Exception;
 }
