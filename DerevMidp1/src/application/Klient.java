@@ -28,17 +28,17 @@ public class Klient {
 			try {
 				foto.stel(in);
 			} catch (IOException e) {
-				omgewing.kryJoernaal().fout(e.toString());
+				omgewing.kryJoernaal().fout("Kon nie foto stel nie", e);
 			} finally {
 				try {
 					in.close();
 				} catch (IOException e) {
-					omgewing.kryJoernaal().fout(e.toString());
+					omgewing.kryJoernaal().fout("Kon nie foto stroom toemaak nie", e);
 				}
 			}
 			
 		} catch (Exception e) {
-			omgewing.kryJoernaal().fout(e.toString());
+			omgewing.kryJoernaal().fout("Kon nie foto lees nie", e);
 		}
 		
 //		van.deaktiveer();

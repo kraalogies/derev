@@ -24,4 +24,8 @@ public class Midp1Joernaal implements Joernaal {
 	public void fout(Exception e) {
 		e.printStackTrace();
 	}
+
+	public void fout(String boodskap, Exception e) {
+		System.out.println(boodskap + " " + e.toString());
+	}
 }

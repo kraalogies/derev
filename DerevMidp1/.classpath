@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
-	<classpathentry kind="con" path="org.elipse.mtj.JavaMEContainer/Series 40 6th Edition SDK/S40_6th_Edition_SDK"/>
+	<classpathentry kind="con" path="org.elipse.mtj.JavaMEContainer/Sprint Wireless Toolkit 3.3.2 Powered by Sun Java Technology/HTCTouch"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
