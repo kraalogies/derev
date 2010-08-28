@@ -25,5 +25,17 @@ public class Midp1Omgewing implements Omgewing {
 		}
 	}
 
+	public int kryBlaaiGrootte() {
+		return 10;
+	}
+
+	public boolean vergelykKasOnsensitief(String links, String regs) {
+		if (links == regs)
+			return true;
+		if (links == null || regs == null)
+			return false;
+		return links.toLowerCase() == regs.toLowerCase();
+	}
+
 	
 }

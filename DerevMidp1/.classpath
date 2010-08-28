@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
-	<classpathentry kind="con" path="org.elipse.mtj.JavaMEContainer/Sprint Wireless Toolkit 3.3.2 Powered by Sun Java Technology/HTCTouch"/>
+	<classpathentry kind="con" path="org.elipse.mtj.JavaMEContainer/Java(TM) Platform Micro Edition SDK 3.0/DefaultFxPhone1"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Hans/Documents/Eclipse/PulsarGalileo/derev/bib/lcrypto-j2me-144.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
