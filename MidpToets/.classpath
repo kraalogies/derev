@@ -3,5 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
 	<classpathentry kind="con" path="org.elipse.mtj.JavaMEContainer/Series 40 6th Edition SDK/S40_6th_Edition_SDK"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Hans/Documents/Eclipse/PulsarGalileo/derev/bib/lcrypto-j2me-144.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

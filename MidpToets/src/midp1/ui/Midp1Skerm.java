@@ -1,7 +1,5 @@
 package midp1.ui;
 
-import i18n.Woordeboek;
-
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Display;
@@ -9,9 +7,7 @@ import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Form;
 import javax.microedition.midlet.MIDlet;
 
-import midp1.Midp1Woordeboek;
 import midp1.Seine;
-import midp1.ia.Midp1Leser;
 
 import platform.Joernaal;
 import platform.Sein;
@@ -25,11 +21,9 @@ public class Midp1Skerm implements Skerm, CommandListener {
 	private final Seine seine = new Seine();
 	private final MIDlet midlet;
 	private final Joernaal joernaal;
-	private final Woordeboek woordeboek;
-	public Midp1Skerm(MIDlet midlet, Woordeboek woordeboek, Joernaal joernaal) {
+	public Midp1Skerm(MIDlet midlet, Joernaal joernaal) {
 		this.joernaal = joernaal;
 		this.midlet = midlet;
-		this.woordeboek = woordeboek;
 		vorm = new Form("");
 		vorm.setCommandListener(this);
 	}
@@ -59,7 +53,7 @@ public class Midp1Skerm implements Skerm, CommandListener {
 		return new Midp1Merk(vorm, etiket);
 	}
 	public PrentjieVeld voegbyPrentjie(String etiket) {
-		return new Midp1PrentjieVeld(woordeboek, midlet, this, joernaal, vorm, etiket);
+		return new Midp1PrentjieVeld(midlet, this, joernaal, vorm, etiket);
 	}
 
 }

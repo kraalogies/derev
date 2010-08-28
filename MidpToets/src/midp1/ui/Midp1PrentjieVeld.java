@@ -1,8 +1,5 @@
 package midp1.ui;
 
-import i18n.R;
-import i18n.Woordeboek;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,8 +19,6 @@ import javax.microedition.media.PlayerListener;
 import javax.microedition.media.control.VideoControl;
 import javax.microedition.midlet.MIDlet;
 
-import midp1.ia.Midp1Leser;
-
 import platform.Joernaal;
 import platform.Sein;
 import platform.ui.Kontrole;
@@ -36,9 +31,7 @@ public class Midp1PrentjieVeld implements PrentjieVeld, Runnable {
 	private final Joernaal joernaal;
 	private boolean isBesigMetVideo = false;
 	private final MIDlet mid;
-	private final Woordeboek woordeboek;
-	public Midp1PrentjieVeld(Woordeboek woordeboek, final MIDlet mid, Skerm skerm, Joernaal joernaal, Form vorm, String etiket) {
-		this.woordeboek = woordeboek;
+	public Midp1PrentjieVeld(final MIDlet mid, Skerm skerm, Joernaal joernaal, Form vorm, String etiket) {
 		this.mid = mid;
 		this.vorm = vorm;
 		this.joernaal = joernaal;
@@ -85,6 +78,18 @@ public class Midp1PrentjieVeld implements PrentjieVeld, Runnable {
 		return data;
 	}
 
+	public byte[] lees(InputStream in) throws IOException {
+		final ByteArrayOutputStream uit = new ByteArrayOutputStream();
+		try {
+			byte[] buffer = new byte[1024];
+			for (int n; (n = in.read(buffer)) > 0;)
+				uit.write(buffer, 0, n);
+			uit.flush();
+			return uit.toByteArray();
+		} finally {
+			uit.close();
+		}
+	}
 	private static Image maakPrentjie(byte[] data, Joernaal joernaal) throws Exception {
 		try {
 			return Image.createImage(data, 0, data.length - 1);
@@ -99,7 +104,7 @@ public class Midp1PrentjieVeld implements PrentjieVeld, Runnable {
 		return this;
 	}
 	public PrentjieVeld stel(InputStream in) throws Exception {
-		data = Midp1Leser.kryData(in);
+		data = lees(in);
 		return stel(data);
 	}
 	
@@ -116,9 +121,8 @@ public class Midp1PrentjieVeld implements PrentjieVeld, Runnable {
 			if (tipes[i].startsWith("video") || tipes[i].startsWith("image"))
 				return tipes[i];
 		}
-		String formaat = "video";
-		joernaal.info(woordeboek.fout(R.fout.VideoFormaatKry, formaat));
-		return formaat;
+		joernaal.info("Kan nie formaat kry nie, vat 'video'");
+		return "video";
 	}
 	public void run() {
 		try {
