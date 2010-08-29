@@ -1,10 +1,10 @@
 package midp1.ui;
 
-import i18n.R;
+import i18n.Bevel;
+import i18n.Etiket;
+import i18n.BoodskapPar1;
 import i18n.Woordeboek;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 import javax.microedition.lcdui.Canvas;
@@ -23,7 +23,6 @@ import javax.microedition.media.control.VideoControl;
 import javax.microedition.midlet.MIDlet;
 
 import midp1.ia.Midp1Leser;
-
 import platform.Joernaal;
 import platform.Sein;
 import platform.ui.Kontrole;
@@ -37,13 +36,13 @@ public class Midp1PrentjieVeld implements PrentjieVeld, Runnable {
 	private boolean isBesigMetVideo = false;
 	private final MIDlet mid;
 	private final Woordeboek woordeboek;
-	public Midp1PrentjieVeld(Woordeboek woordeboek, final MIDlet mid, Skerm skerm, Joernaal joernaal, Form vorm, String etiket) {
+	public Midp1PrentjieVeld(Woordeboek woordeboek, final MIDlet mid, Skerm skerm, Joernaal joernaal, Form vorm, Etiket etiket) {
 		this.woordeboek = woordeboek;
 		this.mid = mid;
 		this.vorm = vorm;
 		this.joernaal = joernaal;
 		final Midp1PrentjieVeld hierdie = this;
-		skerm.voegbyBevel("Foto", new Sein() {
+		skerm.voegbyBevel(Bevel.NeemFoto, new Sein() {
 			public void stuur() {
 				synchronized(this) {
 					if (isBesigMetVideo)
@@ -117,7 +116,7 @@ public class Midp1PrentjieVeld implements PrentjieVeld, Runnable {
 				return tipes[i];
 		}
 		String formaat = "video";
-		joernaal.info(woordeboek.fout(R.fout.VideoFormaatKry, formaat));
+		joernaal.info(woordeboek.kry(BoodskapPar1.videoFormaatNieBeskikbaar(formaat)));
 		return formaat;
 	}
 	public void run() {

@@ -1,17 +1,19 @@
 package platform.ui;
 
+import i18n.Bevel;
+import i18n.Etiket;
 import platform.Sein;
 
 public interface Skerm {
 
-	Teks voegbyTeks(String etiket);
+	Teks voegbyTeks(Etiket etiket);
 
-	void voegbyBevel(String teks, Sein sein);
+	void voegbyBevel(Bevel bevel, Sein sein);
 
 	void wys();
 
-	Merk voegbyMerk(String etiket);
+	Merk voegbyMerk(Etiket etiket);
 
-	PrentjieVeld voegbyPrentjie(String etiket);
+	PrentjieVeld voegbyPrentjie(Etiket etiket);
 
 }

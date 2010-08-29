@@ -8,15 +8,20 @@ import platform.data.GetalGids;
 import platform.ia.Leser;
 import platform.nuts.StringFunksies;
 
+import i18n.Bevel;
+import i18n.Etiket;
+import i18n.Boodskap;
 import i18n.Woordeboek;
 
 public class Midp1Woordeboek implements Woordeboek {
-	private final GetalGids foute = new GetalGids();
+	private final GetalGids boodskappe = new GetalGids();
 	private final GetalGids etikette = new GetalGids();
+	private final GetalGids bevele = new GetalGids();
 	public Midp1Woordeboek(Leser leser, Joernaal joernaal) throws IOException {
 		super();
-		bouGids(leser, foute, "foute", "af");
+		bouGids(leser, boodskappe, "foute", "af");
 		bouGids(leser, etikette, "etikette", "af");
+		bouGids(leser, bevele, "bevele", "af");
 	}
 
 	private static void bouGids(Leser leser, GetalGids gids, String gidsNaam, String taalKode) throws IOException {
@@ -30,12 +35,8 @@ public class Midp1Woordeboek implements Woordeboek {
 		bouFraseKaart(gids, lyne);
 	}
 
-	public String fout(int kode) {
-		return foute.kry(kode);
-	}
-
-	public String fout(int kode, String parameter) {
-		return StringFunksies.formatteer(fout(kode), new String[]{parameter});
+	public String kry(Boodskap boodskap) {
+		return boodskap.kry(boodskappe);
 	}
 
 	public static void bouFraseKaart(GetalGids frases, String[] lyne) {
@@ -58,6 +59,14 @@ public class Midp1Woordeboek implements Woordeboek {
 
 	public String etiket(int kode) {
 		return etikette.kry(kode);
+	}
+
+	public String kry(Etiket etiket) {
+		return etiket.kry(etikette);
+	}
+
+	public String kry(Bevel bevel) {
+		return bevel.kry(bevele);
 	}
 
 }

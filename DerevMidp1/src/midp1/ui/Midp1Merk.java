@@ -1,5 +1,8 @@
 package midp1.ui;
 
+import i18n.Etiket;
+import i18n.Woordeboek;
+
 import javax.microedition.lcdui.Choice;
 import javax.microedition.lcdui.ChoiceGroup;
 import javax.microedition.lcdui.Form;
@@ -16,10 +19,10 @@ public class Midp1Merk implements Merk {
 	private boolean gemerk;
 	private final String etiket;
 	private final Form vorm;
-	public Midp1Merk(Form vorm, String etiket) {
-		this.etiket = etiket;
+	public Midp1Merk(Woordeboek woordeboek, Form vorm, Etiket etiket) {
+		this.etiket = woordeboek.kry(etiket);
 		this.vorm = vorm;
-		merker = new ChoiceGroup(null, Choice.MULTIPLE, new String[] {etiket}, null);
+		merker = new ChoiceGroup(null, Choice.MULTIPLE, new String[] {this.etiket}, null);
 		vorm.append(merker);
 	}
 

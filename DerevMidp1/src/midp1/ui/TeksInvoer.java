@@ -1,5 +1,8 @@
 package midp1.ui;
 
+import i18n.Etiket;
+import i18n.Woordeboek;
+
 import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.Item;
 import javax.microedition.lcdui.StringItem;
@@ -16,16 +19,16 @@ public class TeksInvoer implements Teks {
 	private final int maksLengte;
 	private final Form vorm;
 
-	public TeksInvoer(Form vorm, String etiket, String teks, int maksLengte, boolean slegsLees) {
+	public TeksInvoer(Woordeboek woordeboek, Form vorm, Etiket etiket, String teks, int maksLengte, boolean slegsLees) {
 		this.vorm = vorm;
 		this.maksLengte= maksLengte;
 		if (teks != null && teks.length() > maksLengte)
 			teks = teks.substring(0, maksLengte - 1);
 		this.teks = teks;
 		if (slegsLees) 
-			teksVeld = new StringItem(etiket, teks);
+			teksVeld = new StringItem(woordeboek.kry(etiket), teks);
 		else
-			invoerVeld = new TextField(etiket, teks, maksLengte, TextField.ANY);
+			invoerVeld = new TextField(woordeboek.kry(etiket), teks, maksLengte, TextField.ANY);
 		vorm.append(invoerVeld);
 	}
 	public Teks stel(String teks) {

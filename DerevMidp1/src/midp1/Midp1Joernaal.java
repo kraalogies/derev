@@ -1,10 +1,11 @@
 package midp1;
 
+import i18n.Boodskap;
+import i18n.Woordeboek;
 import platform.Joernaal;
 import platform.roep.StringFunk;
 
 public class Midp1Joernaal implements Joernaal {
-
 	public void fout(String teks) {
 		System.out.println(teks);
 	}

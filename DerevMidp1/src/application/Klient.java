@@ -1,6 +1,6 @@
 package application;
 
-import i18n.R;
+import i18n.Etiket;
 import i18n.Woordeboek;
 
 import java.io.IOException;
@@ -23,10 +23,10 @@ public class Klient {
 	public Klient(SkermOpwekker skermOpwekker, final Omgewing omgewing) {
 		Skerm venster = skermOpwekker.maak();
 		Woordeboek w = omgewing.kryWoordeboek();
-		naam = venster.voegbyTeks(w.etiket(R.etiket.Naam));
-		van = venster.voegbyTeks(w.etiket(R.etiket.Van)).stel("Malherbe");
-		isManlik = venster.voegbyMerk(w.etiket(R.etiket.Manlik));
-		foto = venster.voegbyPrentjie("Foto");
+		naam = venster.voegbyTeks(Etiket.Naam);
+		van = venster.voegbyTeks(Etiket.Van).stel("Malherbe");
+		isManlik = venster.voegbyMerk(Etiket.Manlik);
+		foto = venster.voegbyPrentjie(Etiket.Foto);
 		try {
 			final InputStream in = omgewing.kryLokalePrentjie("/abort.png");
 			try {

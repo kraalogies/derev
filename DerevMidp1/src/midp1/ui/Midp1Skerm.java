@@ -1,5 +1,7 @@
 package midp1.ui;
 
+import i18n.Bevel;
+import i18n.Etiket;
 import i18n.Woordeboek;
 
 import javax.microedition.lcdui.Command;
@@ -33,16 +35,17 @@ public class Midp1Skerm implements Skerm, CommandListener {
 		vorm = new Form("");
 		vorm.setCommandListener(this);
 	}
-	public void voegbyBevel(String naam, Sein sein) {
+	public void voegbyBevel(Bevel bevel, Sein sein) {
+		String naam = woordeboek.kry(bevel);
 		if (seine.bestaan(naam)) 
 			vorm.removeCommand(seine.kryBevel(naam));
-		Command bevel = new Command(naam, Command.SCREEN, 1);
-		seine.voegby(naam, sein, bevel);
-		vorm.addCommand(bevel);
+		Command bevelObjek = new Command(naam, Command.SCREEN, 1);
+		seine.voegby(naam, sein, bevelObjek);
+		vorm.addCommand(bevelObjek);
 	}
 
-	public Teks voegbyTeks(String etiket) {
-		return new TeksInvoer(vorm, etiket, null, 10, false);
+	public Teks voegbyTeks(Etiket etiket) {
+		return new TeksInvoer(woordeboek, vorm, etiket, null, 10, false);
 	}
 
 	public void wys() {
@@ -55,10 +58,10 @@ public class Midp1Skerm implements Skerm, CommandListener {
 		Sein sein = seine.krySein(bevel);
 		sein.stuur();
 	}
-	public Merk voegbyMerk(String etiket) {
-		return new Midp1Merk(vorm, etiket);
+	public Merk voegbyMerk(Etiket etiket) {
+		return new Midp1Merk(woordeboek, vorm, etiket);
 	}
-	public PrentjieVeld voegbyPrentjie(String etiket) {
+	public PrentjieVeld voegbyPrentjie(Etiket etiket) {
 		return new Midp1PrentjieVeld(woordeboek, midlet, this, joernaal, vorm, etiket);
 	}
 
