@@ -64,5 +64,11 @@ public class Midp1Skerm implements Skerm, CommandListener {
 	public PrentjieVeld voegbyPrentjie(Etiket etiket) {
 		return new Midp1PrentjieVeld(woordeboek, midlet, this, joernaal, vorm, etiket);
 	}
+	public void verwyderBevel(Bevel bevel) {
+		String naam = woordeboek.kry(bevel);
+		if (seine.bestaan(naam)) 
+			vorm.removeCommand(seine.kryBevel(naam));
+		seine.verwyder(naam);
+	}
 
 }

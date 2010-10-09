@@ -30,7 +30,6 @@ public class HoofMid extends MIDlet {
 	}
 
 	protected void startApp() throws MIDletStateChangeException {
-		Woordeboek woordeboek;
 		try {
 			Omgewing omgewing = new Midp1Omgewing(new Midp1Leser());
 			new Klient(new Midp1SkermOpwekker(this, omgewing.kryWoordeboek(), omgewing.kryJoernaal()), omgewing);

@@ -1,3 +1,4 @@
+
 package midp1.ui;
 
 import i18n.Bevel;
@@ -5,6 +6,7 @@ import i18n.Etiket;
 import i18n.BoodskapPar1;
 import i18n.Woordeboek;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import javax.microedition.lcdui.Canvas;
@@ -15,7 +17,9 @@ import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
+import javax.microedition.lcdui.ImageItem;
 import javax.microedition.lcdui.Item;
+import javax.microedition.lcdui.StringItem;
 import javax.microedition.media.Manager;
 import javax.microedition.media.Player;
 import javax.microedition.media.PlayerListener;
@@ -25,6 +29,7 @@ import javax.microedition.midlet.MIDlet;
 import midp1.ia.Midp1Leser;
 import platform.Joernaal;
 import platform.Sein;
+import platform.ia.Skema;
 import platform.ui.Kontrole;
 import platform.ui.PrentjieVeld;
 import platform.ui.Skerm;
@@ -36,48 +41,60 @@ public class Midp1PrentjieVeld implements PrentjieVeld, Runnable {
 	private boolean isBesigMetVideo = false;
 	private final MIDlet mid;
 	private final Woordeboek woordeboek;
+	private boolean isAktief;
+	private boolean isSigbaar;
+	private Image prentjie;
+	private int plek;
+	private final Skerm skerm;
+	private Bevel fotoBevel;
+	private Sein fotoBevelOpdrag;
 	public Midp1PrentjieVeld(Woordeboek woordeboek, final MIDlet mid, Skerm skerm, Joernaal joernaal, Form vorm, Etiket etiket) {
 		this.woordeboek = woordeboek;
 		this.mid = mid;
 		this.vorm = vorm;
 		this.joernaal = joernaal;
-		final Midp1PrentjieVeld hierdie = this;
-		skerm.voegbyBevel(Bevel.NeemFoto, new Sein() {
-			public void stuur() {
-				synchronized(this) {
-					if (isBesigMetVideo)
-						return;
-					isBesigMetVideo = true;
-					try {
-						Thread t = new Thread(hierdie);
-						t.start();
-					} catch (Exception e) {
-						hierdie.joernaal.fout(e);
-						isBesigMetVideo = false;
-					}
-				}
-			}
-		});
+		this.isAktief = true;
+		this.isSigbaar = true;
+		plek = vorm.append("");
+		this.skerm = skerm;
 	}
 
 	public Kontrole aktiveer() {
-		// TODO Auto-generated method stub
+		if (isAktief)
+			return this;
+		isAktief = true;
+		if (fotoBevel != null && fotoBevelOpdrag != null)
+			skerm.voegbyBevel(fotoBevel, fotoBevelOpdrag);
 		return this;
 	}
 
 	public Kontrole deaktiveer() {
-		// TODO Auto-generated method stub
+		if (!isAktief)
+			return this;
+		isAktief = false;
+		if (fotoBevel != null)
+			skerm.verwyderBevel(fotoBevel);
 		return this;
 	}
 
 	public Kontrole weg() {
-		// TODO Auto-generated method stub
+		if (!isSigbaar)
+			return this;
+		isSigbaar = false;
+		if (prentjie == null)
+			return this;
+		vorm.set(plek, new StringItem(null, null));
 		return this;
 	}
 
 	public Kontrole wys() {
-		// TODO Auto-generated method stub
-		return null;
+		if (isSigbaar)
+			return this;
+		isSigbaar = true;
+		if (prentjie == null)
+			return this;
+		vorm.set(plek, new ImageItem(null, prentjie, 0, null));
+		return this;
 	}
 
 	public byte[] kry() {
@@ -92,14 +109,15 @@ public class Midp1PrentjieVeld implements PrentjieVeld, Runnable {
 			throw e;
 		}
 	}
-	public PrentjieVeld stel(byte[] data) throws Exception {
+	public void stel(byte[] data) throws Exception {
 		this.data = data;
-		vorm.append(maakPrentjie(data, joernaal));
-		return this;
+		prentjie = maakPrentjie(data, joernaal);
+		if (isSigbaar)
+			vorm.set(plek, new ImageItem(null, prentjie, 0, null));
 	}
-	public PrentjieVeld stel(InputStream in) throws Exception {
+	public void stel(InputStream in) throws Exception {
 		data = Midp1Leser.kryData(in);
-		return stel(data);
+		stel(data);
 	}
 	
 	private Displayable wysVideoOpVorm(final VideoControl kontrole) {
@@ -130,12 +148,15 @@ public class Midp1PrentjieVeld implements PrentjieVeld, Runnable {
 			} catch (Exception e) {
 				joernaal.fout("Kan nie volskerm stel nie", e);
 			}
-			final Command neemFotoBevel = new Command("Neem foto", Command.SCREEN, 1);
+			final Command neemFotoBevel = new Command(woordeboek.kry(fotoBevel), Command.SCREEN, 1);
+			final Command uit = new Command(woordeboek.kry(Bevel.Uit), Command.EXIT, 1);
 			videoSeil.addCommand(neemFotoBevel);
+			videoSeil.addCommand(uit);
 			videoSeil.setCommandListener(new CommandListener() {
 				public void commandAction(Command c, Displayable d) {
 					try {
-						stel(kontrole.getSnapshot(null));
+						if (c.getCommandType() != Command.EXIT)
+							stel(kontrole.getSnapshot(null));
 					} catch (Exception e) {
 						joernaal.fout("Kon nie foto neem nie", e);
 					} finally {
@@ -169,6 +190,57 @@ public class Midp1PrentjieVeld implements PrentjieVeld, Runnable {
 		};
 		kontrole.initDisplayMode(VideoControl.USE_DIRECT_VIDEO, seil);
 		return seil;
+	}
+
+	private InputStream kryStroom(String uri) {
+		if (Skema.Intern.Pas(uri))
+			return getClass().getResourceAsStream(Skema.Intern.KryPad(uri));
+		throw new IllegalArgumentException();
+	}
+	public PrentjieVeld lees(String uri) {
+		try {
+			final InputStream in = kryStroom(uri);
+			try {
+				stel(in);
+			} catch (IOException e) {
+				joernaal.fout("Kon nie foto stel nie", e);
+			} finally {
+				try {
+					in.close();
+				} catch (IOException e) {
+					joernaal.fout("Kon nie foto stroom toemaak nie", e);
+				}
+			}
+			
+		} catch (Exception e) {
+			joernaal.fout("Kon nie foto lees nie", e);
+		}
+		return this;
+	}
+
+	public PrentjieVeld laatFotoNeem(Bevel fotoBevel) {
+		this.fotoBevel = fotoBevel;
+		final Midp1PrentjieVeld hierdie = this;
+		
+		fotoBevelOpdrag = new Sein() {
+			public void stuur() {
+				synchronized(this) {
+					if (isBesigMetVideo)
+						return;
+					isBesigMetVideo = true;
+					try {
+						Thread t = new Thread(hierdie);
+						t.start();
+					} catch (Exception e) {
+						hierdie.joernaal.fout(e);
+						isBesigMetVideo = false;
+					}
+				}
+			}
+		};
+		if (isAktief)
+			skerm.voegbyBevel(fotoBevel, fotoBevelOpdrag);
+		return this;
 	}
 
 }

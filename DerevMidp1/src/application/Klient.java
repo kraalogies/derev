@@ -1,14 +1,11 @@
 package application;
 
+import i18n.Bevel;
 import i18n.Etiket;
 import i18n.Woordeboek;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import platform.Omgewing;
 import platform.Sein;
-import platform.data.Kleur;
 import platform.ui.Merk;
 import platform.ui.PrentjieVeld;
 import platform.ui.Teks;
@@ -26,67 +23,50 @@ public class Klient {
 		naam = venster.voegbyTeks(Etiket.Naam);
 		van = venster.voegbyTeks(Etiket.Van).stel("Malherbe");
 		isManlik = venster.voegbyMerk(Etiket.Manlik);
-		foto = venster.voegbyPrentjie(Etiket.Foto);
-		try {
-			final InputStream in = omgewing.kryLokalePrentjie("/abort.png");
-			try {
-				foto.stel(in);
-			} catch (IOException e) {
-				omgewing.kryJoernaal().fout("Kon nie foto stel nie", e);
-			} finally {
-				try {
-					in.close();
-				} catch (IOException e) {
-					omgewing.kryJoernaal().fout("Kon nie foto stroom toemaak nie", e);
-				}
-			}
-			
-		} catch (Exception e) {
-			omgewing.kryJoernaal().fout("Kon nie foto lees nie", e);
-		}
+		foto = venster.voegbyPrentjie(Etiket.Foto).lees("res:///abort.png").laatFotoNeem(Bevel.NeemFoto);
 		
-//		van.deaktiveer();
-//		venster.voegbyBevel("Klik1", new Sein() {
-//			public void stuur() {
-//				String teks = naam.kry();
-//				omgewing.kryJoernaal().info("Teks:" + teks);
-//				naam.stel(teks + " - kkk");
-//				isManlik.merk(!isManlik.isGemerk());
-//			}
-//		});
-//		
-//		venster.voegbyBevel("Aktiveer", new Sein() {
-//			public void stuur() {
-//				naam.aktiveer();
-//				isManlik.aktiveer();
-//				foto.aktiveer();
-//				omgewing.kryJoernaal().info("aktiveer");
-//			}
-//		});
-//		
-//		venster.voegbyBevel("Deaktiveer", new Sein() {
-//			public void stuur() {
-//				isManlik.deaktiveer();
-//				naam.deaktiveer();
-//				foto.deaktiveer();
-//			}
-//		});
-//		
-//		venster.voegbyBevel("Wys", new Sein() {
-//			public void stuur() {
-//				isManlik.wys();
-//				naam.wys();
-//				foto.wys();
-//			}
-//		});
-//		
-//		venster.voegbyBevel("Weg", new Sein() {
-//			public void stuur() {
-//				isManlik.weg();
-//				naam.weg();
-//				foto.weg();
-//			}
-//		});
+		van.deaktiveer();
+		venster.voegbyBevel(Bevel.Klik, new Sein() {
+			public void stuur() {
+				String teks = naam.kry();
+				omgewing.kryJoernaal().info("Teks:" + teks);
+				naam.stel(teks + " - kkk");
+				isManlik.merk(!isManlik.isGemerk());
+			}
+		});
+		
+		venster.voegbyBevel(Bevel.Aktiveer, new Sein() {
+			public void stuur() {
+				naam.aktiveer();
+				isManlik.aktiveer();
+				foto.aktiveer();
+				omgewing.kryJoernaal().info("aktiveer");
+			}
+		});
+		
+		venster.voegbyBevel(Bevel.Deaktiveer, new Sein() {
+			public void stuur() {
+				isManlik.deaktiveer();
+				naam.deaktiveer();
+				foto.deaktiveer();
+			}
+		});
+		
+		venster.voegbyBevel(Bevel.Wys, new Sein() {
+			public void stuur() {
+				isManlik.wys();
+				naam.wys();
+				foto.wys();
+			}
+		});
+		
+		venster.voegbyBevel(Bevel.Steekweg, new Sein() {
+			public void stuur() {
+				isManlik.weg();
+				naam.weg();
+				foto.weg();
+			}
+		});
 		venster.wys();
 	}
 

@@ -25,11 +25,11 @@ public class Midp1Woordeboek implements Woordeboek {
 	}
 
 	private static void bouGids(Leser leser, GetalGids gids, String gidsNaam, String taalKode) throws IOException {
-		String pad = "jar:///woordeboek/" + gidsNaam;
+		String pad = "res:///woordeboek/" + gidsNaam;
 		String inhoud = leser.lees(pad);
 		String[] lyne = StringFunksies.verdeel(inhoud, "\r\n");
 		bouFraseKaart(gids, lyne);
-		pad = "jar:///woordeboek/" + taalKode + "/" + gidsNaam;
+		pad = "res:///woordeboek/" + taalKode + "/" + gidsNaam;
 		inhoud = leser.lees(pad);
 		lyne = StringFunksies.verdeel(inhoud, "\r\n");
 		bouFraseKaart(gids, lyne);

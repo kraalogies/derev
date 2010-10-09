@@ -1,9 +1,9 @@
 package platform.ui;
 
-import java.io.IOException;
-import java.io.InputStream;
+import i18n.Bevel;
+
 
 public interface PrentjieVeld extends Kontrole {
-	byte[] kry();
-	PrentjieVeld stel(InputStream in) throws Exception;
+	PrentjieVeld lees(String uri);
+	PrentjieVeld laatFotoNeem(Bevel fotoBevel);
 }

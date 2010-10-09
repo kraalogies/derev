@@ -24,15 +24,6 @@ public class Midp1Omgewing implements Omgewing {
 		return new Midp1PrentjieOpwekker();
 	}
 
-	public InputStream kryLokalePrentjie(String naam) throws Exception {
-		try {
-			return getClass().getResourceAsStream(naam);
-		} catch (Exception e) {
-			kryJoernaal().fout("Kan nie lokale prentjie " + naam + " lees nie");
-			throw e;
-		}
-	}
-
 	public int kryBlaaiGrootte() {
 		return 10;
 	}

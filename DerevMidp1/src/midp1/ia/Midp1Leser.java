@@ -7,9 +7,9 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import platform.ia.Leser;
+import platform.ia.Skema;
 
 public class Midp1Leser implements Leser {
-	private static final String jarPrefix = "jar:///";
 	public static byte[] kryData(InputStream in) throws IOException {
 		final ByteArrayOutputStream uit = new ByteArrayOutputStream();
 		try {
@@ -23,8 +23,8 @@ public class Midp1Leser implements Leser {
 		}
 	}
 	public String lees(String pad) throws IOException {
-		if (pad.startsWith(jarPrefix))
-			return leesJar(pad.substring(jarPrefix.length() - 1));
+		if (Skema.Intern.Pas(pad))
+			return leesJar(Skema.Intern.KryPad(pad));
 		return null;
 	}
 	private String leesJar(String pad) throws IOException {

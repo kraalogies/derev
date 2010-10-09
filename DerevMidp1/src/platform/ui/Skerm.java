@@ -5,7 +5,7 @@ import i18n.Etiket;
 import platform.Sein;
 
 public interface Skerm {
-
+	void verwyderBevel(Bevel bevel);
 	Teks voegbyTeks(Etiket etiket);
 
 	void voegbyBevel(Bevel bevel, Sein sein);

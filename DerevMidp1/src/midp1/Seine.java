@@ -26,4 +26,7 @@ public class Seine {
 		Dubbel dubbel = (Dubbel) seine.get(bevel.getLabel());
 		return (Sein) dubbel.kryEerste();
 	}
+	public void verwyder(String naam) {
+		seine.remove(naam);
+	}
 }
