@@ -1,5 +1,6 @@
 package bb;
 
+import platform.Omgewing;
 import platform.ui.SkermOpwekker;
 import bb.ui.BbSkermOpwekker;
 import application.Klient;
@@ -13,9 +14,15 @@ public class MainApplication extends UiApplication {
 	}
 
 	public MainApplication() {
-		skermOpwekker = new BbSkermOpwekker(this);
-		System.out.println("Hallo BB");
-		new Klient(skermOpwekker, new BbOmgewing(0x2051fd67b72d11L, "DerevBb"));
+		try {
+			Omgewing omgewing = new BbOmgewing(0x2051fd67b72d11L, "DerevBb");
+			skermOpwekker = new BbSkermOpwekker(this, omgewing.kryWoordeboek(), omgewing.kryJoernaal());
+			System.out.println("Hallo BB");
+			new Klient(skermOpwekker, omgewing);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new IllegalArgumentException();
+		}
 	}
 
 }

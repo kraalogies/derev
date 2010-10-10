@@ -2,8 +2,8 @@
 package midp1.ui;
 
 import i18n.Bevel;
-import i18n.Etiket;
 import i18n.BoodskapPar1;
+import i18n.Etiket;
 import i18n.Woordeboek;
 
 import java.io.IOException;
@@ -18,7 +18,6 @@ import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.ImageItem;
-import javax.microedition.lcdui.Item;
 import javax.microedition.lcdui.StringItem;
 import javax.microedition.media.Manager;
 import javax.microedition.media.Player;
@@ -120,12 +119,12 @@ public class Midp1PrentjieVeld implements PrentjieVeld, Runnable {
 		stel(data);
 	}
 	
-	private Displayable wysVideoOpVorm(final VideoControl kontrole) {
-		final Item item = (Item) kontrole.initDisplayMode(VideoControl.USE_DIRECT_VIDEO, null);
-		final Form videoVorm = new Form("Foto");
-		videoVorm.append(item);
-		return videoVorm;
-	}
+//	private Displayable wysVideoOpVorm(final VideoControl kontrole) {
+//		final Item item = (Item) kontrole.initDisplayMode(VideoControl.USE_DIRECT_VIDEO, null);
+//		final Form videoVorm = new Form("Foto");
+//		videoVorm.append(item);
+//		return videoVorm;
+//	}
 	private String kryVideoFormaat() {
 		String[] tipes = Manager.getSupportedContentTypes("capture");
 		for (int i = 0; i < tipes.length; ++i) {

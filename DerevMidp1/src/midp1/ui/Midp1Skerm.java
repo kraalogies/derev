@@ -11,16 +11,13 @@ import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Form;
 import javax.microedition.midlet.MIDlet;
 
-import midp1.Midp1Woordeboek;
 import midp1.Seine;
-import midp1.ia.Midp1Leser;
-
 import platform.Joernaal;
 import platform.Sein;
 import platform.ui.Merk;
 import platform.ui.PrentjieVeld;
-import platform.ui.Teks;
 import platform.ui.Skerm;
+import platform.ui.Teks;
 
 public class Midp1Skerm implements Skerm, CommandListener {
 	private final Form vorm;

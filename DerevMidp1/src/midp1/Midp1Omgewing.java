@@ -3,11 +3,8 @@ package midp1;
 import i18n.Woordeboek;
 
 import java.io.IOException;
-import java.io.InputStream;
-
 import platform.Joernaal;
 import platform.Omgewing;
-import platform.data.PrentjieOpwekker;
 import platform.ia.Leser;
 
 public class Midp1Omgewing implements Omgewing {
@@ -18,10 +15,6 @@ public class Midp1Omgewing implements Omgewing {
 	}
 	public Joernaal kryJoernaal() {
 		return joernaal;
-	}
-
-	public PrentjieOpwekker kryPrentjieOpwekker() {
-		return new Midp1PrentjieOpwekker();
 	}
 
 	public int kryBlaaiGrootte() {

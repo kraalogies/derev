@@ -28,4 +28,12 @@ public class Bevele {
 		return (Sein) kryDubbel(i).kryTweede();
 	}
 
+	public void verwyder(String naam) {
+		for (int i = 0; i < bevele.size(); ++i) {
+			if (kryNaam(i) == naam) {
+				bevele.removeElementAt(i);
+				return;
+			}
+		}
+	}
 }

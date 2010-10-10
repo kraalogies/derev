@@ -28,5 +28,12 @@ public class BbJoernaal implements Joernaal {
 	public void info(StringFunk teks) {
 		info(teks.roep());
 	}
+	public void fout(Exception e) {
+		fout(e.toString());
+		
+	}
+	public void fout(String boodskap, Exception e) {
+		fout(boodskap + " - " + e.toString());
+	}
 
 }
