@@ -125,7 +125,7 @@ public class BbPrentjieVeld implements PrentjieVeld, Runnable {
 							stel(kontrole.getSnapshot(fotoFormaat));
 							app.popScreen(skerm);
 						} catch (Exception e) {
-							joernaal.fout("Kan nie foto neem", e);
+							joernaal.fout("Kan nie foto neem (" + fotoFormaat + ")s", e);
 						}
 					}
 					
@@ -202,8 +202,9 @@ public class BbPrentjieVeld implements PrentjieVeld, Runnable {
 	private String kryFotoFormaat() {
 		String[] formate = StringFunksies.verdeel(System.getProperty("video.snapshot.encodings"), " ");
 		for (int i = 0; i < formate.length; ++i) {
-			if (formate[i].indexOf("jpeg") >= 0)
-				return formate[i];
+			String formaat = formate[i];
+			if (formaat.indexOf("jpeg") > 0 && formaat.indexOf("normal") > 0 && formaat.indexOf("width=640") > 0)
+				return formaat;
 		}
 		return formate[0];
 	}
