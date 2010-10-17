@@ -10,7 +10,7 @@ import platform.ia.Leser;
 public class Midp1Omgewing implements Omgewing {
 	private static Woordeboek woordeboek;
 	private static Joernaal joernaal = new Midp1Joernaal();
-	public Midp1Omgewing(Leser leser) throws IOException {
+	public Midp1Omgewing(Leser leser) throws Exception {
 		woordeboek = new Midp1Woordeboek(leser, joernaal);
 	}
 	public Joernaal kryJoernaal() {

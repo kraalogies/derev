@@ -33,7 +33,7 @@ public class HoofMid extends MIDlet {
 		try {
 			Omgewing omgewing = new Midp1Omgewing(new Midp1Leser());
 			new Klient(new Midp1SkermOpwekker(this, omgewing.kryWoordeboek(), omgewing.kryJoernaal()), omgewing);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			Display.getDisplay(this).setCurrent(new Alert("Error", "Cannot initialize application - " + e.toString(), null, AlertType.ERROR));
 		}
 	}

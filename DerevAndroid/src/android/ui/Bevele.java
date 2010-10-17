@@ -23,6 +23,8 @@ public class Bevele {
 		Dubbel paar = bevele.get(indeks);
 		return (Sein) paar.kryTweede();
 	}
-
-	
+	public void verwyder(String naam) {
+		if (bevele.containsKey(naam))
+			bevele.remove(naam);
+	}
 }

@@ -22,7 +22,7 @@ public class Midp1Leser implements Leser {
 			uit.close();
 		}
 	}
-	public String lees(String pad) throws IOException {
+	public String lees(String pad) throws Exception {
 		if (Skema.Intern.Pas(pad))
 			return leesJar(Skema.Intern.KryPad(pad));
 		return null;

@@ -19,7 +19,7 @@ public class BbWoordeboek implements Woordeboek {
 	private final GetalGids bevele = new GetalGids();
 	public BbWoordeboek(Leser leser, Joernaal joernaal) throws IOException {
 		super();
-		bouGids(leser, boodskappe, "foute", "af");
+		bouGids(leser, boodskappe, "boodskappe", "af");
 		bouGids(leser, etikette, "etikette", "af");
 		bouGids(leser, bevele, "bevele", "af");
 	}

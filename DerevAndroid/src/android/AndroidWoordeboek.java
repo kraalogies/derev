@@ -1,21 +1,21 @@
-package midp1;
+package android;
 
 import java.io.IOException;
+
 import platform.Joernaal;
 import platform.data.GetalGids;
 import platform.ia.Leser;
 import platform.nuts.StringFunksies;
-
 import i18n.Bevel;
-import i18n.Etiket;
 import i18n.Boodskap;
+import i18n.Etiket;
 import i18n.Woordeboek;
 
-public class Midp1Woordeboek implements Woordeboek {
+public class AndroidWoordeboek implements Woordeboek {
 	private final GetalGids boodskappe = new GetalGids();
 	private final GetalGids etikette = new GetalGids();
 	private final GetalGids bevele = new GetalGids();
-	public Midp1Woordeboek(Leser leser, Joernaal joernaal) throws Exception {
+	public AndroidWoordeboek(Leser leser, Joernaal joernaal) throws Exception {
 		super();
 		bouGids(leser, boodskappe, "boodskappe", "af");
 		bouGids(leser, etikette, "etikette", "af");
@@ -31,10 +31,6 @@ public class Midp1Woordeboek implements Woordeboek {
 		inhoud = leser.lees(pad);
 		lyne = StringFunksies.verdeel(inhoud, "\r\n");
 		bouFraseKaart(gids, lyne);
-	}
-
-	public String kry(Boodskap boodskap) {
-		return boodskap.kry(boodskappe);
 	}
 
 	public static void bouFraseKaart(GetalGids frases, String[] lyne) {
@@ -59,10 +55,17 @@ public class Midp1Woordeboek implements Woordeboek {
 		return etikette.kry(kode);
 	}
 
+	@Override
+	public String kry(Boodskap boodskap) {
+		return boodskap.kry(boodskappe);
+	}
+
+	@Override
 	public String kry(Etiket etiket) {
 		return etiket.kry(etikette);
 	}
 
+	@Override
 	public String kry(Bevel bevel) {
 		return bevel.kry(bevele);
 	}

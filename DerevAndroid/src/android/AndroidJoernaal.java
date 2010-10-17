@@ -33,4 +33,15 @@ public class AndroidJoernaal implements Joernaal {
 		info(teks.roep());
 	}
 
+	@Override
+	public void fout(Exception e) {
+		Log.e(tag, e.toString());
+		
+	}
+
+	@Override
+	public void fout(String boodskap, Exception e) {
+		Log.e(tag, boodskap + " - " + e.toString());
+	}
+
 }
