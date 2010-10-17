@@ -26,8 +26,8 @@ public class Midp1SkermOpwekker implements SkermOpwekker {
 		return new Midp1Skerm(midlet, woordeboek, joernaal);
 	}
 
-	public ProtoSkerm maakLys(String[] items, GetalProsedure kies) {
-		return new Midp1Lys(items, kies, midlet, woordeboek, joernaal);
+	public ProtoSkerm maakLys(String titel, String[] items, GetalProsedure kies) {
+		return new Midp1Lys(titel, items, kies, midlet, woordeboek, joernaal);
 	}
 
 }

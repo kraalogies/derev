@@ -1,5 +1,8 @@
 package midp1.ui;
 
+import i18n.Bevel;
+import i18n.Woordeboek;
+
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Display;
@@ -8,32 +11,22 @@ import javax.microedition.lcdui.List;
 import javax.microedition.midlet.MIDlet;
 
 import midp1.Seine;
-
-import i18n.Bevel;
-import i18n.Etiket;
-import i18n.Woordeboek;
 import platform.Joernaal;
 import platform.Sein;
 import platform.roep.GetalProsedure;
-import platform.ui.Merk;
-import platform.ui.PrentjieVeld;
 import platform.ui.ProtoSkerm;
-import platform.ui.Skerm;
-import platform.ui.Teks;
 
 public class Midp1Lys implements ProtoSkerm, CommandListener {
 	private final MIDlet midlet;
-	private final Joernaal joernaal;
 	private final Woordeboek woordeboek;
 	private final List lys;
 	private final Seine seine = new Seine();
 	private final GetalProsedure kies;
-	public Midp1Lys(String[] items, GetalProsedure kies, MIDlet midlet, Woordeboek woordeboek, Joernaal joernaal) {
+	public Midp1Lys(String titel, String[] items, GetalProsedure kies, MIDlet midlet, Woordeboek woordeboek, Joernaal joernaal) {
 		this.kies = kies;
-		this.joernaal = joernaal;
 		this.midlet = midlet;
 		this.woordeboek = woordeboek;
-		lys = new List("", List.IMPLICIT);
+		lys = new List(titel, List.IMPLICIT);
 		lys.setCommandListener(this);
 		for (int i = 0; i < items.length; ++i) {
 			lys.append(items[i], null);

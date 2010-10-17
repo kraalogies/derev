@@ -21,7 +21,7 @@ public class Klient {
 //	private final PrentjieVeld foto;
 	public Klient(SkermOpwekker skermOpwekker, final Omgewing omgewing) {
 		String[] items = new String[]{"Keuse 1", "Keuse 2", "Keuse 3"};
-		ProtoSkerm lys = skermOpwekker.maakLys(items, new GetalProsedure() {
+		ProtoSkerm lys = skermOpwekker.maakLys("My Lys", items, new GetalProsedure() {
 			public void roep(int waarde) {
 				omgewing.kryJoernaal().info(Integer.toString(waarde));
 			}
