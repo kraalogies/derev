@@ -4,16 +4,8 @@ import i18n.Bevel;
 import i18n.Etiket;
 import platform.Sein;
 
-public interface Skerm {
-	void verwyderBevel(Bevel bevel);
+public interface Skerm extends ProtoSkerm {
 	Teks voegbyTeks(Etiket etiket);
-
-	void voegbyBevel(Bevel bevel, Sein sein);
-
-	void wys();
-
 	Merk voegbyMerk(Etiket etiket);
-
 	PrentjieVeld voegbyPrentjie(Etiket etiket);
-
 }

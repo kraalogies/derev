@@ -17,14 +17,14 @@ public class BbWoordeboek implements Woordeboek {
 	private final GetalGids boodskappe = new GetalGids();
 	private final GetalGids etikette = new GetalGids();
 	private final GetalGids bevele = new GetalGids();
-	public BbWoordeboek(Leser leser, Joernaal joernaal) throws IOException {
+	public BbWoordeboek(Leser leser, Joernaal joernaal) throws Exception {
 		super();
 		bouGids(leser, boodskappe, "boodskappe", "af");
 		bouGids(leser, etikette, "etikette", "af");
 		bouGids(leser, bevele, "bevele", "af");
 	}
 
-	private static void bouGids(Leser leser, GetalGids gids, String gidsNaam, String taalKode) throws IOException {
+	private static void bouGids(Leser leser, GetalGids gids, String gidsNaam, String taalKode) throws Exception {
 		String pad = "res:///woordeboek/" + gidsNaam;
 		String inhoud = leser.lees(pad);
 		String[] lyne = StringFunksies.verdeel(inhoud, "\r\n");

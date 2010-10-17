@@ -10,7 +10,7 @@ import platform.Omgewing;
 public class BbOmgewing implements Omgewing {
 	private final Joernaal joernaal;
 	private Woordeboek woordeboek;
-	public BbOmgewing(long appGuid, String appNaam) throws IOException {
+	public BbOmgewing(long appGuid, String appNaam) throws Exception {
 		joernaal = new BbJoernaal(appGuid, appNaam);
 		woordeboek = new BbWoordeboek(new BbLeser(), joernaal);
 	}
