@@ -5,6 +5,8 @@ import i18n.Woordeboek;
 import javax.microedition.midlet.MIDlet;
 
 import platform.Joernaal;
+import platform.roep.GetalProsedure;
+import platform.ui.ProtoSkerm;
 import platform.ui.SkermOpwekker;
 import platform.ui.Skerm;
 
@@ -22,6 +24,10 @@ public class Midp1SkermOpwekker implements SkermOpwekker {
 
 	public Skerm maak() {
 		return new Midp1Skerm(midlet, woordeboek, joernaal);
+	}
+
+	public ProtoSkerm maakLys(String[] items, GetalProsedure kies) {
+		return new Midp1Lys(items, kies, midlet, woordeboek, joernaal);
 	}
 
 }

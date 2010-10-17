@@ -1,20 +1,14 @@
 package midp1;
 
-import java.io.IOException;
-
-import i18n.Woordeboek;
-
 import javax.microedition.lcdui.Alert;
 import javax.microedition.lcdui.AlertType;
 import javax.microedition.lcdui.Display;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
-import platform.Omgewing;
-
 import midp1.ia.Midp1Leser;
 import midp1.ui.Midp1SkermOpwekker;
-
+import platform.Omgewing;
 import application.Klient;
 
 public class HoofMid extends MIDlet {

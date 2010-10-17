@@ -8,6 +8,7 @@ public class Bevel extends LokaleFrase {
 	public static final Bevel Wys = new Bevel(5);
 	public static final Bevel Steekweg = new Bevel(6);
 	public static final Bevel Uit = new Bevel(7);
+	public static final Bevel Kies = new Bevel(8);
 	public Bevel(int indeks) {
 		super(indeks);
 	}
